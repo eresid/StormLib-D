@@ -1,0 +1,8 @@
+name "stormlib"
+description "The StormLib library is a pack of modules, which are able to read and also to write files from/to the MPQ archives."
+homepage "https://github.com/eresid/StormLib-D"
+authors "Yevhen Sakara"
+copyright "Copyright © 2017, Yevhen Sakara"
+license "MIT"
+targetPath "lib"
+dependency "derelict-util" version="~>3.0.0-beta.2"
