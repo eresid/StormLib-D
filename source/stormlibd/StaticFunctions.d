@@ -35,4 +35,26 @@ extern(C) @nogc nothrow {
 	DWORD SFileGetAttributes(HANDLE);
 	bool SFileSetAttributes(HANDLE, DWORD);
 	bool SFileUpdateFileAttributes(HANDLE, const char*);
+
+	// Functions for manipulation with patch archives
+    bool SFileOpenPatchArchive(HANDLE, const TCHAR*, const char*, DWORD);
+    bool SFileIsPatchedArchive(HANDLE);
+
+    // Functions for file manipulation
+
+    // Reading from MPQ file
+    bool SFileHasFile(HANDLE, const char*);
+    bool SFileOpenFileEx(HANDLE, const char*, DWORD, HANDLE*);
+    DWORD SFileGetFileSize(HANDLE, LPDWORD);
+    DWORD SFileSetFilePointer(HANDLE, LONG, LONG*, DWORD);
+    bool SFileReadFile(HANDLE, void*, DWORD, LPDWORD, LPOVERLAPPED);
+    bool SFileCloseFile(HANDLE);
+
+    // Retrieving info about a file in the archive
+    bool SFileGetFileInfo(HANDLE, SFileInfoClass, void*, DWORD, LPDWORD);
+    bool SFileGetFileName(HANDLE, char*);
+    bool SFileFreeFileInfo(void*, SFileInfoClass);
+
+    // High-level extract function
+    bool SFileExtractFile(HANDLE, const char*, const TCHAR*, DWORD);
 }

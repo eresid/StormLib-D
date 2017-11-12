@@ -34,6 +34,22 @@ extern(C) @nogc nothrow {
 	alias da_SFileGetAttributes = DWORD function(HANDLE);
 	alias da_SFileSetAttributes = bool function(HANDLE, DWORD);
 	alias da_SFileUpdateFileAttributes = bool function(HANDLE, const char*);
+
+    alias da_SFileOpenPatchArchive = bool function(HANDLE, const TCHAR*, const char*, DWORD);
+    alias da_SFileIsPatchedArchive = bool function(HANDLE);
+
+    alias da_SFileHasFile = bool function(HANDLE, const char*);
+    alias da_SFileOpenFileEx = bool function(HANDLE, const char*, DWORD, HANDLE*);
+    alias da_SFileGetFileSize = DWORD function(HANDLE, LPDWORD);
+    alias da_SFileSetFilePointer = DWORD function(HANDLE, LONG, LONG*, DWORD);
+    alias da_SFileReadFile = bool function(HANDLE, void*, DWORD, LPDWORD, LPOVERLAPPED);
+    alias da_SFileCloseFile = bool function(HANDLE);
+
+    alias da_SFileGetFileInfo = bool function(HANDLE, SFileInfoClass, void*, DWORD, LPDWORD);
+    alias da_SFileGetFileName = bool function(HANDLE, char*);
+    alias da_SFileFreeFileInfo = bool function(void*, SFileInfoClass);
+
+    alias da_SFileExtractFile = bool function(HANDLE, const char*, const TCHAR*, DWORD);
 }
 
 __gshared {
@@ -59,6 +75,22 @@ __gshared {
 	da_SFileGetAttributes SFileGetAttributes;
 	da_SFileSetAttributes SFileSetAttributes;
 	da_SFileUpdateFileAttributes SFileUpdateFileAttributes;
+
+	da_SFileOpenPatchArchive SFileOpenPatchArchive;
+	da_SFileIsPatchedArchive SFileIsPatchedArchive;
+
+	da_SFileHasFile SFileHasFile;
+	da_SFileOpenFileEx SFileOpenFileEx;
+	da_SFileGetFileSize SFileGetFileSize;
+	da_SFileSetFilePointer SFileSetFilePointer;
+	da_SFileReadFile SFileReadFile;
+	da_SFileCloseFile SFileCloseFile;
+
+	da_SFileGetFileInfo SFileGetFileInfo;
+	da_SFileGetFileName SFileGetFileName;
+	da_SFileFreeFileInfo SFileFreeFileInfo;
+
+	da_SFileExtractFile SFileExtractFile;
 }
 
 
@@ -92,6 +124,22 @@ class DerelictStormLibLoader : SharedLibLoader {
         bindFunc(cast(void**)&SFileGetAttributes, "SFileGetAttributes");
         bindFunc(cast(void**)&SFileSetAttributes, "SFileSetAttributes");
         bindFunc(cast(void**)&SFileUpdateFileAttributes, "SFileUpdateFileAttributes");
+
+        bindFunc(cast(void**)&SFileOpenPatchArchive, "SFileOpenPatchArchive");
+        bindFunc(cast(void**)&SFileIsPatchedArchive, "SFileIsPatchedArchive");
+
+        bindFunc(cast(void**)&SFileHasFile, "SFileHasFile");
+        bindFunc(cast(void**)&SFileOpenFileEx, "SFileOpenFileEx");
+        bindFunc(cast(void**)&SFileGetFileSize, "SFileGetFileSize");
+        bindFunc(cast(void**)&SFileSetFilePointer, "SFileSetFilePointer");
+        bindFunc(cast(void**)&SFileReadFile, "SFileReadFile");
+        bindFunc(cast(void**)&SFileCloseFile, "SFileCloseFile");
+
+        bindFunc(cast(void**)&SFileGetFileInfo, "SFileGetFileInfo");
+        bindFunc(cast(void**)&SFileGetFileName, "SFileGetFileName");
+        bindFunc(cast(void**)&SFileFreeFileInfo, "SFileFreeFileInfo");
+
+        bindFunc(cast(void**)&SFileExtractFile, "SFileExtractFile");
     }
 }
 
