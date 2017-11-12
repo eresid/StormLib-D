@@ -1,0 +1,7 @@
+name "example1"
+description "Simple example for StormLib library."
+authors "Yevhen Sakara"
+copyright "Copyright © 2017, Yevhen Sakara"
+license "MIT"
+
+dependency "stormlib" path="../"
